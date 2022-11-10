@@ -5,6 +5,7 @@
  */
 package konversicelcius5b;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,9 +34,9 @@ public class KonversiCelcius extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        ICelcius = new javax.swing.JTextField();
+        TFCelicus = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        HKonversi = new javax.swing.JLabel();
+        LHasil = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -63,17 +64,22 @@ public class KonversiCelcius extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
 
-        ICelcius.addActionListener(new java.awt.event.ActionListener() {
+        TFCelicus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ICelciusActionPerformed(evt);
+                TFCelicusActionPerformed(evt);
+            }
+        });
+        TFCelicus.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TFCelicusKeyTyped(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Celcius");
 
-        HKonversi.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        HKonversi.setText("Hasil....");
+        LHasil.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        LHasil.setText("Hasil....");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -81,13 +87,13 @@ public class KonversiCelcius extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(81, 81, 81)
-                .addComponent(ICelcius, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TFCelicus, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(jLabel1)
                 .addContainerGap(118, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(HKonversi)
+                .addComponent(LHasil)
                 .addGap(186, 186, 186))
         );
         jPanel3Layout.setVerticalGroup(
@@ -96,9 +102,9 @@ public class KonversiCelcius extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(ICelcius, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TFCelicus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(HKonversi)
+                .addComponent(LHasil)
                 .addContainerGap())
         );
 
@@ -187,24 +193,25 @@ public class KonversiCelcius extends javax.swing.JFrame {
         setBounds(0, 0, 513, 296);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ICelciusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ICelciusActionPerformed
+    private void TFCelicusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFCelicusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ICelciusActionPerformed
+    }//GEN-LAST:event_TFCelicusActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      
-        if (ICelcius.getText().equals("")) {
+        String inputCelcius = TFCelicus.getText();
+        if (TFCelicus.getText().equals("")) {
             JOptionPane.showMessageDialog(null,"Form Input Masih Kosong");
         }else{
-            double celcius = Double.parseDouble(ICelcius.getText());
+            double celcius = Double.parseDouble(TFCelicus.getText());
             double fahrenheit = (1.8 * celcius) + 32;
-            HKonversi.setText(Double.toString(fahrenheit));
+            LHasil.setText(Double.toString(fahrenheit));
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ICelcius.setText(null);
-        HKonversi.setText("Hasil...");
+        TFCelicus.setText(null);
+        LHasil.setText("Hasil...");
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -212,6 +219,15 @@ public class KonversiCelcius extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void TFCelicusKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TFCelicusKeyTyped
+        // TODO add your handling code here:
+        char karakter = evt.getKeyChar();
+if(!(((karakter >= '0') && (karakter <= '9') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE)))){
+    getToolkit().beep();
+    evt.consume();
+}
+    }//GEN-LAST:event_TFCelicusKeyTyped
 
     /**
      * @param args the command line arguments
@@ -249,8 +265,8 @@ public class KonversiCelcius extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel HKonversi;
-    private javax.swing.JTextField ICelcius;
+    private javax.swing.JLabel LHasil;
+    private javax.swing.JTextField TFCelicus;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
